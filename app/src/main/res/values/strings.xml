@@ -13,9 +13,11 @@
     <string name="study_cards">Study</string>
     <string name="rating_failed">Failed</string>
     <string name="rating_hard">Hard</string>
+    <string name="rating_good">Good</string>
     <string name="rating_easy">Easy</string>
     <string name="rating_failed_interval">Failed\n%1$s</string>
     <string name="rating_hard_interval">Hard\n%1$s</string>
+    <string name="rating_good_interval">Good\n%1$s</string>
     <string name="rating_easy_interval">Easy\n%1$s</string>
     <string name="interval_days">%1$dd</string>
     <string name="study_cards_count">Study (%1$d)</string>

@@ -82,6 +82,9 @@ class SpacedRepetitionFragment : Fragment() {
         binding.buttonHard.setOnClickListener {
             viewModel.rateCard(FsrsAlgorithm.RATING_HARD)
         }
+        binding.buttonGood.setOnClickListener {
+            viewModel.rateCard(FsrsAlgorithm.RATING_GOOD)
+        }
         binding.buttonEasy.setOnClickListener {
             viewModel.rateCard(FsrsAlgorithm.RATING_EASY)
         }
@@ -90,12 +93,16 @@ class SpacedRepetitionFragment : Fragment() {
     private fun updateButtonIntervals(card: FlashCard) {
         val failedDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_AGAIN)
         val hardDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_HARD)
+        val goodDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_GOOD)
         val easyDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_EASY)
         binding.buttonFailed.text = getString(
             R.string.rating_failed_interval, getString(R.string.interval_days, failedDays)
         )
         binding.buttonHard.text = getString(
             R.string.rating_hard_interval, getString(R.string.interval_days, hardDays)
+        )
+        binding.buttonGood.text = getString(
+            R.string.rating_good_interval, getString(R.string.interval_days, goodDays)
         )
         binding.buttonEasy.text = getString(
             R.string.rating_easy_interval, getString(R.string.interval_days, easyDays)
