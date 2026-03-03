@@ -26,6 +26,9 @@ object FsrsAlgorithm {
 
     private const val DAY_MS = 86_400_000L
 
+    fun previewInterval(card: FlashCard, rating: Int): Int =
+        applyRating(card, rating).scheduledDays
+
     fun applyRating(card: FlashCard, rating: Int): FlashCard {
         val now = System.currentTimeMillis()
         val elapsedDays = if (card.lastReview > 0L) {
