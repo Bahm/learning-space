@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">LearningSpace</string>
-    <string name="hello_world">Hello World!</string>
-    <string name="flash_cards">Flash Cards</string>
+<string name="flash_cards">Flash Cards</string>
     <string name="add_flash_card">Add Flash Card</string>
     <string name="edit_flash_card">Edit Flash Card</string>
     <string name="review_flash_card">Flash Card</string>
