@@ -23,4 +23,7 @@ interface FlashCardDao {
 
     @Delete
     suspend fun delete(card: FlashCard)
+
+    @Query("SELECT * FROM flash_cards WHERE dueDate <= :now ORDER BY dueDate ASC")
+    suspend fun getDueCards(now: Long): List<FlashCard>
 }

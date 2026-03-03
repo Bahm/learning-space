@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.learningspace.R
 import com.example.learningspace.databinding.FragmentFlashCardListBinding
 import com.example.learningspace.viewmodel.FlashCardListViewModel
 
@@ -48,6 +49,19 @@ class FlashCardListFragment : Fragment() {
         binding.fab.setOnClickListener {
             val action = FlashCardListFragmentDirections.actionListToEdit(-1)
             findNavController().navigate(action)
+        }
+
+        binding.toolbar.inflateMenu(R.menu.menu_flash_card_list)
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_study -> {
+                    findNavController().navigate(
+                        FlashCardListFragmentDirections.actionListToStudy()
+                    )
+                    true
+                }
+                else -> false
+            }
         }
     }
 
