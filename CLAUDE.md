@@ -1,0 +1,20 @@
+# Project Overview
+Android app written in Kotlin. Minimum SDK 26, target SDK 34.
+
+# Build
+./gradlew assembleDebug
+
+# Project Structure
+- app/src/main/java/com/bahm/learningspace/ — Kotlin source files
+- app/src/main/res/ — layouts, drawables, strings
+- app/src/main/AndroidManifest.xml
+
+# Conventions
+- ViewBinding only, no DataBinding
+- Single Activity architecture
+- No third-party libraries unless explicitly requested
+- All strings in strings.xml, no hardcoded strings
+
+# PR Instructions
+Always create the PR yourself using: gh pr create --base main
+Never give the user a link to create the PR manually.
