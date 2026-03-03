@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">LearningSpace</string>
     <string name="hello_world">Hello World!</string>
+    <string name="flash_cards">Flash Cards</string>
+    <string name="add_flash_card">Add Flash Card</string>
+    <string name="edit_flash_card">Edit Flash Card</string>
+    <string name="review_flash_card">Flash Card</string>
+    <string name="question_label">Question</string>
+    <string name="answer_label">Answer</string>
+    <string name="show_answer">Show Answer</string>
+    <string name="question_hint">Question</string>
+    <string name="answer_hint">Answer</string>
+    <string name="save">Save</string>
 </resources>
