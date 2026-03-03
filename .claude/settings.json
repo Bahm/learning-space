@@ -1,6 +1,6 @@
 {
   "allowedTools": [
     "Bash(./gradlew assembleDebug)",
-    "Bash(gh pr create*)"
+    "Bash(gh pr create:*)"
   ]
 }
