@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/flashCardListFragment">
+
+    <fragment
+        android:id="@+id/flashCardListFragment"
+        android:name="com.example.learningspace.ui.FlashCardListFragment"
+        android:label="@string/flash_cards"
+        tools:layout="@layout/fragment_flash_card_list">
+        <action
+            android:id="@+id/action_list_to_review"
+            app:destination="@id/flashCardReviewFragment" />
+        <action
+            android:id="@+id/action_list_to_edit"
+            app:destination="@id/flashCardEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flashCardReviewFragment"
+        android:name="com.example.learningspace.ui.FlashCardReviewFragment"
+        android:label="@string/review_flash_card"
+        tools:layout="@layout/fragment_flash_card_review">
+        <argument
+            android:name="cardId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flashCardEditFragment"
+        android:name="com.example.learningspace.ui.FlashCardEditFragment"
+        android:label="@string/edit_flash_card"
+        tools:layout="@layout/fragment_flash_card_edit">
+        <argument
+            android:name="cardId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>
