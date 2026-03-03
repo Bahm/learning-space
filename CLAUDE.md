@@ -21,4 +21,5 @@ Android app written in Kotlin. Minimum SDK 26, target SDK 34.
 
 # PR Instructions
 Always create the PR yourself using: gh pr create --base main
+Always push the branch to origin before running gh pr create.
 Never give the user a link to create the PR manually.
