@@ -22,6 +22,7 @@ object FsrsAlgorithm {
 
     const val RATING_AGAIN = 1
     const val RATING_HARD = 2
+    const val RATING_GOOD = 3
     const val RATING_EASY = 4
 
     private const val DAY_MS = 86_400_000L

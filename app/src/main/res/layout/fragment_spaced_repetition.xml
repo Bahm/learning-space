@@ -121,6 +121,17 @@
             android:text="@string/rating_hard" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_good"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="@string/rating_good" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_easy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
