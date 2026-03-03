@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.learningspace.R
+import com.example.learningspace.data.FlashCard
 import com.example.learningspace.data.FsrsAlgorithm
 import com.example.learningspace.databinding.FragmentSpacedRepetitionBinding
 import com.example.learningspace.viewmodel.SpacedRepetitionViewModel
@@ -37,6 +38,7 @@ class SpacedRepetitionFragment : Fragment() {
             if (card != null) {
                 binding.textQuestion.text = card.question
                 binding.textAnswer.text = card.answer
+                updateButtonIntervals(card)
             }
         }
 
@@ -83,6 +85,21 @@ class SpacedRepetitionFragment : Fragment() {
         binding.buttonEasy.setOnClickListener {
             viewModel.rateCard(FsrsAlgorithm.RATING_EASY)
         }
+    }
+
+    private fun updateButtonIntervals(card: FlashCard) {
+        val failedDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_AGAIN)
+        val hardDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_HARD)
+        val easyDays = FsrsAlgorithm.previewInterval(card, FsrsAlgorithm.RATING_EASY)
+        binding.buttonFailed.text = getString(
+            R.string.rating_failed_interval, getString(R.string.interval_days, failedDays)
+        )
+        binding.buttonHard.text = getString(
+            R.string.rating_hard_interval, getString(R.string.interval_days, hardDays)
+        )
+        binding.buttonEasy.text = getString(
+            R.string.rating_easy_interval, getString(R.string.interval_days, easyDays)
+        )
     }
 
     override fun onDestroyView() {

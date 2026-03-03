@@ -63,6 +63,15 @@ class FlashCardListFragment : Fragment() {
                 else -> false
             }
         }
+
+        viewModel.dueCardCount.observe(viewLifecycleOwner) { count ->
+            val title = if (count > 0) {
+                getString(R.string.study_cards_count, count)
+            } else {
+                getString(R.string.study_cards)
+            }
+            binding.toolbar.menu.findItem(R.id.action_study)?.title = title
+        }
     }
 
     override fun onDestroyView() {
