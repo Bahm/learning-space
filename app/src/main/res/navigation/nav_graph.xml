@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_list_to_edit"
             app:destination="@id/flashCardEditFragment" />
+        <action
+            android:id="@+id/action_list_to_study"
+            app:destination="@id/spacedRepetitionFragment" />
     </fragment>
 
     <fragment
@@ -38,5 +41,11 @@
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/spacedRepetitionFragment"
+        android:name="com.example.learningspace.ui.SpacedRepetitionFragment"
+        android:label="@string/study_cards"
+        tools:layout="@layout/fragment_spaced_repetition" />
 
 </navigation>

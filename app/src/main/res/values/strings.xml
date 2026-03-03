@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">LearningSpace</string>
-<string name="flash_cards">Flash Cards</string>
+    <string name="flash_cards">Flash Cards</string>
     <string name="add_flash_card">Add Flash Card</string>
     <string name="edit_flash_card">Edit Flash Card</string>
     <string name="review_flash_card">Flash Card</string>
@@ -10,4 +10,11 @@
     <string name="question_hint">Question</string>
     <string name="answer_hint">Answer</string>
     <string name="save">Save</string>
+    <string name="study_cards">Study</string>
+    <string name="rating_failed">Failed</string>
+    <string name="rating_hard">Hard</string>
+    <string name="rating_easy">Easy</string>
+    <string name="review_progress">%1$d / %2$d</string>
+    <string name="session_complete_message">Session complete!\n%1$d cards reviewed.</string>
+    <string name="no_cards_due">No cards due for review!</string>
 </resources>
