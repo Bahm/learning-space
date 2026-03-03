@@ -9,12 +9,10 @@ import com.example.learningspace.data.FlashCardRepository
 import kotlinx.coroutines.launch
 
 class FlashCardListViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: FlashCardRepository
-    val allCards = run {
-        val db = FlashCardDatabase.getInstance(application)
-        repository = FlashCardRepository(db.flashCardDao())
-        repository.allCards
-    }
+    private val repository = FlashCardRepository(
+        FlashCardDatabase.getInstance(application).flashCardDao()
+    )
+    val allCards = repository.allCards
 
     fun deleteCard(card: FlashCard) {
         viewModelScope.launch {
