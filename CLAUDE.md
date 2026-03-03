@@ -14,7 +14,12 @@ Android app written in Kotlin. Minimum SDK 26, target SDK 34.
 - Single Activity architecture
 - No third-party libraries beyond Jetpack/AndroidX unless explicitly requested
 - All strings in strings.xml, no hardcoded strings
+- Navigation: Safe Args plugin (androidx.navigation.safeargs.kotlin); add actions to nav_graph.xml and use generated Directions classes
+- Room migrations required when adding/changing entity fields; always use addMigrations() in the database builder, never fallbackToDestructiveMigration()
+- Package name: com.example.learningspace
+- No tests currently exist
 
 # PR Instructions
 Always create the PR yourself using: gh pr create --base main
 Never give the user a link to create the PR manually.
+Note: gh pr create requires the `gh pr create` command to be in allowedTools. If blocked, note the limitation.
