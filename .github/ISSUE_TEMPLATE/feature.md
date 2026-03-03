@@ -11,3 +11,4 @@ about: Ask Claude to implement something
 ## Acceptance criteria
 - [ ] Builds with ./gradlew assembleDebug
 - [ ] No hardcoded strings
+- [ ] If skill files or CLAUDE.md are missing important information or contain outdated information, update them
