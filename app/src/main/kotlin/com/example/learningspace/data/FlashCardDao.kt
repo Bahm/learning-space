@@ -35,4 +35,7 @@ interface FlashCardDao {
 
     @Query("DELETE FROM flash_cards WHERE deckId = :deckId")
     suspend fun deleteByDeck(deckId: Int)
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
+    suspend fun getByDeckList(deckId: Int): List<FlashCard>
 }

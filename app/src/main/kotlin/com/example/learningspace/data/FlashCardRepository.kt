@@ -14,4 +14,5 @@ class FlashCardRepository(private val dao: FlashCardDao) {
     suspend fun getDueCards(now: Long): List<FlashCard> = dao.getDueCards(now)
     suspend fun getDueCardsByDeck(deckId: Int, now: Long): List<FlashCard> = dao.getDueCardsByDeck(deckId, now)
     suspend fun deleteByDeck(deckId: Int) = dao.deleteByDeck(deckId)
+    suspend fun getByDeckList(deckId: Int): List<FlashCard> = dao.getByDeckList(deckId)
 }

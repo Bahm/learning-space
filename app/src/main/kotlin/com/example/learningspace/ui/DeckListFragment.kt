@@ -38,8 +38,13 @@ class DeckListFragment : Fragment() {
                 findNavController().navigate(action)
             },
             onDeleteClick = { deckWithCount ->
-                viewModel.deleteDeck(deckWithCount.deck)
-                Snackbar.make(binding.root, R.string.deck_deleted, Snackbar.LENGTH_SHORT).show()
+                viewModel.deleteDeck(deckWithCount.deck) { cards ->
+                    Snackbar.make(binding.root, R.string.deck_deleted, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.undo) {
+                            viewModel.restoreDeck(deckWithCount.deck, cards)
+                        }
+                        .show()
+                }
             }
         )
 
