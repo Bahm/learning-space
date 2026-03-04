@@ -18,6 +18,15 @@ interface DeckDao {
     )
     fun getAllWithCardCount(): LiveData<List<DeckWithCardCount>>
 
+    @Query(
+        """SELECT decks.*, COUNT(flash_cards.id) as cardCount
+           FROM decks
+           LEFT JOIN flash_cards ON decks.id = flash_cards.deckId
+           GROUP BY decks.id
+           ORDER BY decks.createdAt DESC"""
+    )
+    suspend fun getAllWithCardCountList(): List<DeckWithCardCount>
+
     @Query("SELECT * FROM decks WHERE id = :id")
     suspend fun getById(id: Int): Deck?
 

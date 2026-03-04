@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 
 class DeckRepository(private val dao: DeckDao) {
     fun getAllDecksWithCardCount(): LiveData<List<DeckWithCardCount>> = dao.getAllWithCardCount()
+    suspend fun getAllDecksWithCardCountList(): List<DeckWithCardCount> = dao.getAllWithCardCountList()
 
     suspend fun insert(deck: Deck) = dao.insert(deck)
     suspend fun update(deck: Deck) = dao.update(deck)
