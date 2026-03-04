@@ -14,6 +14,9 @@ import com.example.learningspace.data.FlashCardRepository
 import kotlinx.coroutines.launch
 
 class DeckListViewModel(application: Application) : AndroidViewModel(application) {
+    private val _allDecks = MutableLiveData<List<DeckWithCardCount>>(emptyList())
+    val allDecks: LiveData<List<DeckWithCardCount>> = _allDecks
+
     private val deckRepository: DeckRepository
     private val flashCardRepository: FlashCardRepository
 
@@ -21,14 +24,12 @@ class DeckListViewModel(application: Application) : AndroidViewModel(application
         val db = FlashCardDatabase.getInstance(application)
         deckRepository = DeckRepository(db.deckDao())
         flashCardRepository = FlashCardRepository(db.flashCardDao())
+        refresh()
     }
-
-    private val _allDecks = MutableLiveData<List<DeckWithCardCount>>(emptyList())
-    val allDecks: LiveData<List<DeckWithCardCount>> = _allDecks
 
     fun refresh() {
         viewModelScope.launch {
-            _allDecks.value = deckRepository.getAllDecksWithCardCountList()
+            _allDecks.postValue(deckRepository.getAllDecksWithCardCountList())
         }
     }
 
