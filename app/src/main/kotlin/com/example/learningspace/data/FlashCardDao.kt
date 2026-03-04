@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FlashCardDao {
@@ -14,6 +15,9 @@ interface FlashCardDao {
 
     @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
     fun getByDeck(deckId: Int): LiveData<List<FlashCard>>
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
+    fun getByDeckFlow(deckId: Int): Flow<List<FlashCard>>
 
     @Query("SELECT * FROM flash_cards WHERE id = :id")
     suspend fun getById(id: Int): FlashCard?

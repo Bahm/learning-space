@@ -1,11 +1,13 @@
 package com.example.learningspace.data
 
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 
 class FlashCardRepository(private val dao: FlashCardDao) {
     val allCards: LiveData<List<FlashCard>> = dao.getAll()
 
     fun getByDeck(deckId: Int): LiveData<List<FlashCard>> = dao.getByDeck(deckId)
+    fun getByDeckFlow(deckId: Int): Flow<List<FlashCard>> = dao.getByDeckFlow(deckId)
 
     suspend fun insert(card: FlashCard) = dao.insert(card)
     suspend fun update(card: FlashCard) = dao.update(card)
