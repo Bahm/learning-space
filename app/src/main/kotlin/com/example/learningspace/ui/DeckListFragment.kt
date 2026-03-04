@@ -26,6 +26,11 @@ class DeckListFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.refresh()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,7 +56,6 @@ class DeckListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        viewModel.refresh()
         viewModel.allDecks.observe(viewLifecycleOwner) { decks ->
             adapter.submitList(decks)
         }

@@ -28,10 +28,14 @@ class FlashCardListFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.setDeckId(args.deckId)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.setDeckId(args.deckId)
         binding.toolbar.title = args.deckName
 
         val adapter = FlashCardAdapter(
