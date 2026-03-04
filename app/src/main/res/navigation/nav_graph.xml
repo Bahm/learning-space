@@ -3,13 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/flashCardListFragment">
+    app:startDestination="@id/deckListFragment">
+
+    <fragment
+        android:id="@+id/deckListFragment"
+        android:name="com.example.learningspace.ui.DeckListFragment"
+        android:label="@string/decks"
+        tools:layout="@layout/fragment_deck_list">
+        <action
+            android:id="@+id/action_deck_list_to_deck_edit"
+            app:destination="@id/deckEditFragment" />
+        <action
+            android:id="@+id/action_deck_list_to_card_list"
+            app:destination="@id/flashCardListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/deckEditFragment"
+        android:name="com.example.learningspace.ui.DeckEditFragment"
+        android:label="@string/edit_deck"
+        tools:layout="@layout/fragment_deck_edit">
+        <argument
+            android:name="deckId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/flashCardListFragment"
         android:name="com.example.learningspace.ui.FlashCardListFragment"
         android:label="@string/flash_cards"
         tools:layout="@layout/fragment_flash_card_list">
+        <argument
+            android:name="deckId"
+            app:argType="integer" />
+        <argument
+            android:name="deckName"
+            app:argType="string" />
         <action
             android:id="@+id/action_list_to_review"
             app:destination="@id/flashCardReviewFragment" />
@@ -40,12 +70,19 @@
             android:name="cardId"
             android:defaultValue="-1"
             app:argType="integer" />
+        <argument
+            android:name="deckId"
+            app:argType="integer" />
     </fragment>
 
     <fragment
         android:id="@+id/spacedRepetitionFragment"
         android:name="com.example.learningspace.ui.SpacedRepetitionFragment"
         android:label="@string/study_cards"
-        tools:layout="@layout/fragment_spaced_repetition" />
+        tools:layout="@layout/fragment_spaced_repetition">
+        <argument
+            android:name="deckId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -12,6 +12,9 @@ interface FlashCardDao {
     @Query("SELECT * FROM flash_cards ORDER BY id ASC")
     fun getAll(): LiveData<List<FlashCard>>
 
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
+    fun getByDeck(deckId: Int): LiveData<List<FlashCard>>
+
     @Query("SELECT * FROM flash_cards WHERE id = :id")
     suspend fun getById(id: Int): FlashCard?
 
@@ -26,4 +29,10 @@ interface FlashCardDao {
 
     @Query("SELECT * FROM flash_cards WHERE dueDate <= :now ORDER BY dueDate ASC")
     suspend fun getDueCards(now: Long): List<FlashCard>
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId AND dueDate <= :now ORDER BY dueDate ASC")
+    suspend fun getDueCardsByDeck(deckId: Int, now: Long): List<FlashCard>
+
+    @Query("DELETE FROM flash_cards WHERE deckId = :deckId")
+    suspend fun deleteByDeck(deckId: Int)
 }

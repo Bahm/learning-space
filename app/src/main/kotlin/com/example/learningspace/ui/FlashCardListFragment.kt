@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learningspace.R
 import com.example.learningspace.databinding.FragmentFlashCardListBinding
@@ -17,6 +18,7 @@ class FlashCardListFragment : Fragment() {
     private var _binding: FragmentFlashCardListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FlashCardListViewModel by viewModels()
+    private val args: FlashCardListFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,13 +31,15 @@ class FlashCardListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.toolbar.title = args.deckName
+
         val adapter = FlashCardAdapter(
             onItemClick = { card ->
                 val action = FlashCardListFragmentDirections.actionListToReview(card.id)
                 findNavController().navigate(action)
             },
             onEditClick = { card ->
-                val action = FlashCardListFragmentDirections.actionListToEdit(card.id)
+                val action = FlashCardListFragmentDirections.actionListToEdit(card.id, args.deckId)
                 findNavController().navigate(action)
             },
             onDeleteClick = { card ->
@@ -49,12 +53,12 @@ class FlashCardListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        viewModel.allCards.observe(viewLifecycleOwner) { cards ->
+        viewModel.cards.observe(viewLifecycleOwner) { cards ->
             adapter.submitList(cards)
         }
 
         binding.fab.setOnClickListener {
-            val action = FlashCardListFragmentDirections.actionListToEdit(-1)
+            val action = FlashCardListFragmentDirections.actionListToEdit(-1, args.deckId)
             findNavController().navigate(action)
         }
 
@@ -63,7 +67,7 @@ class FlashCardListFragment : Fragment() {
             when (item.itemId) {
                 R.id.action_study -> {
                     findNavController().navigate(
-                        FlashCardListFragmentDirections.actionListToStudy()
+                        FlashCardListFragmentDirections.actionListToStudy(args.deckId)
                     )
                     true
                 }

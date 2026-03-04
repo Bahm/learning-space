@@ -27,4 +27,11 @@
     <string name="delete_flash_card">Delete flash card</string>
     <string name="card_deleted">Card deleted</string>
     <string name="undo">Undo</string>
+    <string name="decks">Decks</string>
+    <string name="add_deck">Add Deck</string>
+    <string name="deck_name_label">Deck Name</string>
+    <string name="edit_deck">Edit Deck</string>
+    <string name="deck_deleted">Deck deleted</string>
+    <string name="delete_deck">Delete deck</string>
+    <string name="card_count">%1$d cards</string>
 </resources>
