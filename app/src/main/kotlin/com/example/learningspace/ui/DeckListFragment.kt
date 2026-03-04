@@ -51,6 +51,7 @@ class DeckListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
+        viewModel.refresh()
         viewModel.allDecks.observe(viewLifecycleOwner) { decks ->
             adapter.submitList(decks)
         }

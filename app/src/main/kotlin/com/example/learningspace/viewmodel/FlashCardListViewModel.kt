@@ -29,7 +29,7 @@ class FlashCardListViewModel(application: Application) : AndroidViewModel(applic
     }
 
     fun setDeckId(deckId: Int) {
-        if (_deckId.value != deckId) _deckId.value = deckId
+        _deckId.value = deckId
     }
 
     fun deleteCard(card: FlashCard) {
