@@ -7,9 +7,10 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [FlashCard::class], version = 2, exportSchema = false)
+@Database(entities = [FlashCard::class, Deck::class], version = 3, exportSchema = false)
 abstract class FlashCardDatabase : RoomDatabase() {
     abstract fun flashCardDao(): FlashCardDao
+    abstract fun deckDao(): DeckDao
 
     companion object {
         @Volatile
@@ -28,6 +29,20 @@ abstract class FlashCardDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `decks` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `createdAt` INTEGER NOT NULL)"
+                )
+                database.execSQL(
+                    "INSERT INTO `decks` (`name`, `createdAt`) VALUES ('Default', 0)"
+                )
+                database.execSQL(
+                    "ALTER TABLE `flash_cards` ADD COLUMN `deckId` INTEGER NOT NULL DEFAULT 1"
+                )
+            }
+        }
+
         fun getInstance(context: Context): FlashCardDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -35,7 +50,7 @@ abstract class FlashCardDatabase : RoomDatabase() {
                     FlashCardDatabase::class.java,
                     "flash_cards_db"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
                 INSTANCE = instance
                 instance

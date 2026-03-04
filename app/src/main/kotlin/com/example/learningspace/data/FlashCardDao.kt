@@ -6,11 +6,18 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FlashCardDao {
     @Query("SELECT * FROM flash_cards ORDER BY id ASC")
     fun getAll(): LiveData<List<FlashCard>>
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
+    fun getByDeck(deckId: Int): LiveData<List<FlashCard>>
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
+    fun getByDeckFlow(deckId: Int): Flow<List<FlashCard>>
 
     @Query("SELECT * FROM flash_cards WHERE id = :id")
     suspend fun getById(id: Int): FlashCard?
@@ -26,4 +33,13 @@ interface FlashCardDao {
 
     @Query("SELECT * FROM flash_cards WHERE dueDate <= :now ORDER BY dueDate ASC")
     suspend fun getDueCards(now: Long): List<FlashCard>
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId AND dueDate <= :now ORDER BY dueDate ASC")
+    suspend fun getDueCardsByDeck(deckId: Int, now: Long): List<FlashCard>
+
+    @Query("DELETE FROM flash_cards WHERE deckId = :deckId")
+    suspend fun deleteByDeck(deckId: Int)
+
+    @Query("SELECT * FROM flash_cards WHERE deckId = :deckId ORDER BY id ASC")
+    suspend fun getByDeckList(deckId: Int): List<FlashCard>
 }

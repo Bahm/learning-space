@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.learningspace.data.FlashCard
 import com.example.learningspace.data.FlashCardDatabase
@@ -11,7 +12,11 @@ import com.example.learningspace.data.FlashCardRepository
 import com.example.learningspace.data.FsrsAlgorithm
 import kotlinx.coroutines.launch
 
-class SpacedRepetitionViewModel(application: Application) : AndroidViewModel(application) {
+class SpacedRepetitionViewModel(
+    application: Application,
+    savedStateHandle: SavedStateHandle
+) : AndroidViewModel(application) {
+    private val deckId: Int = savedStateHandle["deckId"] ?: 0
 
     private val repository: FlashCardRepository
 
@@ -39,7 +44,7 @@ class SpacedRepetitionViewModel(application: Application) : AndroidViewModel(app
     private fun loadDueCards() {
         viewModelScope.launch {
             val now = System.currentTimeMillis()
-            dueCards = repository.getDueCards(now)
+            dueCards = repository.getDueCardsByDeck(deckId, now)
             _totalCards.value = dueCards.size
             if (dueCards.isEmpty()) {
                 _sessionComplete.value = true

@@ -18,12 +18,12 @@ class FlashCardEditViewModel(application: Application) : AndroidViewModel(applic
 
     suspend fun getById(id: Int): FlashCard? = repository.getById(id)
 
-    fun saveCard(id: Int?, question: String, answer: String, onComplete: () -> Unit) {
+    fun saveCard(id: Int?, deckId: Int, question: String, answer: String, onComplete: () -> Unit) {
         viewModelScope.launch {
             if (id == null) {
-                repository.insert(FlashCard(question = question, answer = answer))
+                repository.insert(FlashCard(deckId = deckId, question = question, answer = answer))
             } else {
-                repository.update(FlashCard(id = id, question = question, answer = answer))
+                repository.update(FlashCard(id = id, deckId = deckId, question = question, answer = answer))
             }
             onComplete()
         }
