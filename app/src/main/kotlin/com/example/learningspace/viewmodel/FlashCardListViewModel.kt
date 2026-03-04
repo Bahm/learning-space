@@ -25,4 +25,10 @@ class FlashCardListViewModel(application: Application) : AndroidViewModel(applic
             repository.delete(card)
         }
     }
+
+    fun insertCard(card: FlashCard) {
+        viewModelScope.launch {
+            repository.insert(card)
+        }
+    }
 }
