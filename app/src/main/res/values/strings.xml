@@ -24,4 +24,7 @@
     <string name="review_progress">%1$d / %2$d</string>
     <string name="session_complete_message">Session complete!\n%1$d cards reviewed.</string>
     <string name="no_cards_due">No cards due for review!</string>
+    <string name="delete_flash_card">Delete flash card</string>
+    <string name="card_deleted">Card deleted</string>
+    <string name="undo">Undo</string>
 </resources>

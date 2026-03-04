@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learningspace.R
 import com.example.learningspace.databinding.FragmentFlashCardListBinding
 import com.example.learningspace.viewmodel.FlashCardListViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class FlashCardListFragment : Fragment() {
     private var _binding: FragmentFlashCardListBinding? = null
@@ -36,6 +37,12 @@ class FlashCardListFragment : Fragment() {
             onEditClick = { card ->
                 val action = FlashCardListFragmentDirections.actionListToEdit(card.id)
                 findNavController().navigate(action)
+            },
+            onDeleteClick = { card ->
+                viewModel.deleteCard(card)
+                Snackbar.make(binding.root, R.string.card_deleted, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.undo) { viewModel.insertCard(card) }
+                    .show()
             }
         )
 

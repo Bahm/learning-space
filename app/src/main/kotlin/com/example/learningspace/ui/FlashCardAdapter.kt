@@ -10,7 +10,8 @@ import com.example.learningspace.databinding.ItemFlashCardBinding
 
 class FlashCardAdapter(
     private val onItemClick: (FlashCard) -> Unit,
-    private val onEditClick: (FlashCard) -> Unit
+    private val onEditClick: (FlashCard) -> Unit,
+    private val onDeleteClick: (FlashCard) -> Unit
 ) : ListAdapter<FlashCard, FlashCardAdapter.ViewHolder>(DiffCallback()) {
 
     inner class ViewHolder(private val binding: ItemFlashCardBinding) :
@@ -19,6 +20,7 @@ class FlashCardAdapter(
             binding.questionText.text = card.question
             binding.root.setOnClickListener { onItemClick(card) }
             binding.editButton.setOnClickListener { onEditClick(card) }
+            binding.deleteButton.setOnClickListener { onDeleteClick(card) }
         }
     }
 
